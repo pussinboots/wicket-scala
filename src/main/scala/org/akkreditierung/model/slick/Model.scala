@@ -1,0 +1,51 @@
+package org.akkreditierung.model.slick
+
+import scala.slick.driver.{ExtendedProfile, H2Driver, MySQLDriver}
+import java.sql.{Timestamp, Date}
+import java.security.MessageDigest
+import java.util.{Date, Calendar}
+import scala.slick.session.{Database, Session}
+import org.akkreditierung.model.DB
+import com.avaje.ebean.Expr
+import scala.beans.{BeanInfo, BeanProperty}
+import scala.slick.lifted.{Query=>SlickQuery}
+
+trait Profile {
+  val profile: ExtendedProfile
+}
+/**
+ * The Data Access Layer contains all components and a profile
+ */
+class DAL(override val profile: ExtendedProfile) extends StudiengangComponent with Profile {
+  import profile.simple._
+  def recreate(implicit session: Session) = {
+    drop(session)
+    create(session)
+  }
+  def create(implicit session: Session) = (Studiengangs.ddl).create //helper method to create all tables
+
+  def drop(implicit session: Session) {
+    try{
+      (Studiengangs.ddl).drop
+    } catch {
+      case ioe: Exception =>
+    }
+  }
+}
+
+case class Studiengang(val id: Option[Int] = None, name: String, createDate: Timestamp)
+
+trait StudiengangComponent { this: Profile=> //requires a Profile to be mixed in...
+  import profile.simple._ //...to be able import profile.simple._
+  import profile.simple.Database.threadLocalSession
+
+  object Studiengangs extends Table[Studiengang]("studiengaenge") {
+    def id = column[Int]("id", O.PrimaryKey, O.AutoInc) // This is the primary key column
+    def name = column[String]("name")
+    def createDate = column[Timestamp]("createDate")
+    def * = id.? ~ name ~ createDate <> (Studiengang, Studiengang.unapply _)
+    def forInsert = name ~ createDate <> ({ t => Studiengang(None,t._1, t._2)}, {(u: Studiengang) => Some((u.name, u.createDate))}) returning id
+    def insert(studiengang: Studiengang) = studiengang.copy(id = Some(forInsert.insert(studiengang)))
+    def findAll() =  (for {a <- Studiengangs} yield (a))
+  }
+}

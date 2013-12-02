@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+	<head>
+		<meta charset="utf-8" />
+		<title>Example Page</title>
+		<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
+	</head>
+	<body>
+        <form wicket:id="filterForm">
+            Name: <input wicket:id="name" /> <br />
+            Id: <input type="text" wicket:id="id" /> <br />
+        </form>
+	<table class="dataview" wicket:id="datatable" />
+    </body>
+</html>
