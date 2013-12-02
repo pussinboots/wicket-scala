@@ -9,7 +9,7 @@ after_success:
 - if [![ "$TRAVIS_BRANCH" == "master" ]]; then echo "This is not the master branch ($TRAVIS_BRANCH) so no deployment"; exit 0; fi
 - echo "Start Deployment to heroku"
 - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-- git remote add heroku git@heroku.com:lit-ocean-2199.git
+- git remote add heroku git@heroku.com:wicket-scala.git
 - echo "Host heroku.com" >> ~/.ssh/config
 - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
 - echo "   CheckHostIP no" >> ~/.ssh/config
