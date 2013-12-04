@@ -19,6 +19,7 @@ To support Test Driven Development the sbt plugin sbt-scct from http://mtkopone.
 integrated. With that plugin the Code Coverage can be calculated with sbt.
 
 To integrate sbt-scct in yout project add the lines below to your project/plugin.sbt file
+    
     resolvers += "scct-github-repository" at "http://mtkopone.github.com/scct/maven-repo"
 
     addSbtPlugin("reaktor" % "sbt-scct" % "0.2-SNAPSHOT")
