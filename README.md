@@ -32,10 +32,22 @@ The clean command should remove old compiled source code so that scct:test compi
 code fresh. Without the clean command it could be possible that the calculated Code Coverage is to low because
 some code lines was introspected from scct and also observed during the running tests.
 
+The Code Coverage report is written as html files to the following folder.
+
+    target/scala-xxx/coverage-report/
+    
+In that folder there is a index.html open it and you will see your project related Code Coverage report.
+
 
 Continous Integration
 ==================
-Travis CI (https://travis-ci.org/pussinboots/wicket-scala)
+
+After a while of reasearch for an open and free build server (hudson, jenkins, teamcity) somewhere in the internet
+i found Travis CI (https://travis-ci.org). It is a relativ new star on the Continous Integration universe but
+it support a wide range of programming languages and its realy easy to setup and configure (see http://about.travis-ci.org/docs/user/getting-started/).
+
+This project is already configured in travis see https://travis-ci.org/pussinboots/wicket-scala. The configuration
+is stored in the project itself in the .travis.yml file.
 
 Continous Deployment
 ==================
