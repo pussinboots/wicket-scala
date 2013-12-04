@@ -24,7 +24,13 @@ To integrate sbt-scct in yout project add the lines below to your project/plugin
 
     addSbtPlugin("reaktor" % "sbt-scct" % "0.2-SNAPSHOT")
 
-Use the following command 
+To calculate the Code Coverage run 
+    
+    sbt clean scct:test
+    
+The clean command should remove old compiled source code so that scct:test compile and introspect all source
+code fresh. Without the clean command it could be possible that the calculated Code Coverage is to low because
+some code lines was introspected from scct and also observed during the running tests.
 
 
 Continous Integration
