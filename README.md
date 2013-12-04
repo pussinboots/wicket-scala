@@ -11,9 +11,9 @@ With the sbt command
 the complete idea project files will be created and can be open as Scala Project in Idea.
 The Scala Plugin needs to be installed in Idea.
 
-
-By the way it is also an approach to address
 Test Driven Development
+==================
+
 Continous Integration
 Continous Deployment
 
