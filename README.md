@@ -11,15 +11,20 @@ With the sbt command
 the complete idea project files will be created and can be open as Scala Project in Idea.
 The Scala Plugin needs to be installed in Idea.
 
+
 Test Driven Development
 ==================
 
 Continous Integration
-Continous Deployment
-
-
+==================
 Travis CI (https://travis-ci.org/pussinboots/wicket-scala)
+
+Continous Deployment
+==================
 and deploy it to heroku. (https://www.heroku.com)
+
+
+
 
 * wicket framework 6.6.0
 * scala 2.10.x
