@@ -1,7 +1,6 @@
 package org.scala.wicket.page
 
 import org.scala.model._
-import org.apache.wicket.MarkupContainer
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn
 import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.request.mapper.parameter.PageParameters
