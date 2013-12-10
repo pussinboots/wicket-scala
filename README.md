@@ -51,6 +51,8 @@ is stored in the project itself in the .travis.yml file.
 
 Continous Deployment
 ==================
+
+Deploy to heroku from travis-ci see here http://about.travis-ci.org/docs/user/deployment/heroku/ its really simple.
 and deploy it to heroku. (https://www.heroku.com)
 
 
