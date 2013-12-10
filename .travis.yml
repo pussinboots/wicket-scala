@@ -2,5 +2,6 @@ language: scala
 deploy:
   provider: heroku
   app: wicket-scala
+  strategy: git
   api_key: 
     secure: oyq9ol+AWazhF0zsh+YEiQGKiqIGTqMltt1jT0AUuP3oIUEi2rM1nDbv6OxlcMyIvWrQKN3qhW/kkRMrJisBcbsGIer6WMyO1DG0Y0pXrwj75hDp5PtOajyKdIz/6JEMt82yeNfbGncHmUOGjzc+f7k6nFRDiI/qSHYZ5oN/A/E=
