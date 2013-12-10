@@ -20,7 +20,7 @@ class ExamplePage(parameters: PageParameters) extends WebPage(parameters) {
     val form = "filterForm".form(this)
     import DynamicFilterContainer._
     val filter = new DynamicFilterContainer[DB.dal.Studiengangs.type, Studiengang]()
-    filter.add("id", "id".textField(form), likeFilter("id"))
+    filter.add("id", "id".textField(form), equalFilter("id", v=> v.toInt))
     filter.add("name", "name".textField(form), likeFilter("name"))
     filter
   }

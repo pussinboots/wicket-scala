@@ -18,10 +18,10 @@ trait SlickFilter[E,T] {
 
 object DynamicFilterContainer {
   def likeFilter[E<: Table[T],T](field: String) = {(value: String, query: Query[E, T]) =>
-      query.filter(_.column[String](field) like value)
+      query.filter(_.column[String](field) like s"%${value}%")
   }	
-  def likeFilter[E<: Table[T],T](field: String, valueTranformer:(String)=>Int) = {(value: String, query: Query[E,T]) =>
-    query.filter(_.column[Int](field) === valueTranformer(value))
+  def equalFilter[E<: Table[T],T](field: String, valueTranformer:(String)=>Int) = {(value: String, query: Query[E,T]) =>
+      query.filter(_.column[Int](field) === valueTranformer(value))
   }
 }
 class DynamicFilterContainer[E, T] extends SlickFilter[E,T] {
@@ -46,7 +46,7 @@ class DynamicFilterContainer[E, T] extends SlickFilter[E,T] {
     val value = field.getValue
     if(isNotEmpty(value)) {
       DB.db withSession {
-        return filter(s"%${value}%", query)
+        return filter(value, query)
       }
     }
     return query

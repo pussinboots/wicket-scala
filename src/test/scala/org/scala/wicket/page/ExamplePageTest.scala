@@ -58,7 +58,7 @@ class ExamplePageTest extends Specification with SlickDbBefore {
         table.getRowCount() must beEqualTo(2)
     }
     "with name filter" in {wt: WicketTester =>
-	login(wt)
+      login(wt)
         wt.newFormTester("filterForm").setValue("name", "erster Eintrag")
         wt.executeAjaxEvent("filterForm:name", "onchange");
         wt.assertComponent("datatable", classOf[DataTable[Studiengang, String]])
@@ -68,7 +68,7 @@ class ExamplePageTest extends Specification with SlickDbBefore {
         data.next.name must beEqualTo("erster Eintrag")
     }
     "with id filter" in {wt: WicketTester =>
-	login(wt)
+	      login(wt)
         wt.newFormTester("filterForm").setValue("id", "2")
         wt.executeAjaxEvent("filterForm:id", "onchange");
         wt.assertComponent("datatable", classOf[DataTable[Studiengang, String]])
