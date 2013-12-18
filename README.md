@@ -18,7 +18,7 @@ Test Driven Development
 To support Test Driven Development the sbt plugin sbt-scct from http://mtkopone.github.com/scct/maven-repo is
 integrated. With that plugin the Code Coverage can be calculated with sbt.
 
-To integrate sbt-scct in yout project add the lines below to your project/plugin.sbt file
+To integrate sbt-scct in your project add the lines below to your project/plugin.sbt file
     
     resolvers += "scct-github-repository" at "http://mtkopone.github.com/scct/maven-repo"
 
@@ -30,12 +30,12 @@ To calculate the Code Coverage run
     
 The clean command should remove old compiled source code so that scct:test compile and introspect all source
 code fresh. Without the clean command it could be possible that the calculated Code Coverage is to low because
-some code lines was introspected from scct and also observed during the running tests.
+not all code lines were introspected from scct and also not observed during the running tests.
 
 The Code Coverage report is written as html files to the following folder.
 
-    target/scala-xxx/coverage-report/
-    
+    target/scala-(xxx)/coverage-report/
+
 In that folder there is a index.html open it and you will see your project related Code Coverage report.
 
 
@@ -46,17 +46,37 @@ After a while of reasearch for an open and free build server (hudson, jenkins, t
 i found Travis CI (https://travis-ci.org). It is a relativ new star on the Continous Integration universe but
 it support a wide range of programming languages and its realy easy to setup and configure (see http://about.travis-ci.org/docs/user/getting-started/).
 
-This project is already configured in travis see https://travis-ci.org/pussinboots/wicket-scala. The configuration
+This project is already configured for travis see https://travis-ci.org/pussinboots/wicket-scala. The configuration
 is stored in the project itself in the .travis.yml file.
 
 Continous Deployment
 ==================
 
 Deploy to heroku from travis-ci see here http://about.travis-ci.org/docs/user/deployment/heroku/ its really simple.
-and deploy it to heroku. (https://www.heroku.com)
+and deploy it to heroku. This project is deployed under http://wicket-scala.herokuapp.com/. The magic here is every commit to the github repository (https://github.com/pussinboots/wicket-scala/) trigger a build in travis ci and after a succesful build the result will deployed to heroku. 
 
+    deploy:
+        provider: heroku
+        app: wicket-scala
+        strategy: git
+        api_key: 
+            secure: oyq......
 
+Above is the snippet from .travis.yml file that configure the heroku deployment for travis ci build server. Here a little explanation.
+* provider: heroku is clear or ?
+* app: wicket-scala the name of the heroku git repo
+* strategy: git travis has two strategies the normal git which means commit the changes of the current build to the heroku git repo this is the normal way
+* api_key:  secure: oyq...... the encrypted heroku api token which can be get with the 
+    
+        heroku auth:token 
 
+command inside a heroku project. With the following command you get the heroku auth token encrypted for use with travis
+
+        travis encrypt $(heroku auth:token) --add deploy.api_key
+        
+        
+Dependencies
+=================
 
 * wicket framework 6.6.0
 * scala 2.10.x
